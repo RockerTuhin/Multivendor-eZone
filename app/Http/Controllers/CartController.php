@@ -73,10 +73,3 @@ class CartController extends Controller
     }
 
 }
-echo "# Multivendor-eZone" >> README.md
-git init
-git add README.md
-git commit -m "first commit"
-git branch -M main
-git remote add origin https://github.com/RockerTuhin/Multivendor-eZone.git
-git push -u origin main
