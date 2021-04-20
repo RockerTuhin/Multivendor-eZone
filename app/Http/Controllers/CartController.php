@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Coupon;
 use App\Product;
 use Illuminate\Http\Request;
 
@@ -49,4 +50,33 @@ class CartController extends Controller
     	return view('cart.checkout');
     }
 
+    public function applyCoupon()
+    {
+        $couponCode = request('coupon_code');
+
+        $couponData = Coupon::where('code',$couponCode)->first();
+
+        if(!$couponData)
+        {
+            return back()->withMessage('Sorry! Coupon does not exist');
+        }
+        $condition = new \Darryldecode\Cart\CartCondition(array(
+                'name' => $couponData->name,
+                'type' => $couponData->type,
+                'target' => 'total', // this condition will be applied to cart's subtotal when getSubTotal() is called.
+                'value' => $couponData->value,
+            ));
+
+        \Cart::session(auth()->id())->condition($condition); // for a speicifc user's cart
+
+        return back()->withMessage('coupon applied');
+    }
+
 }
+echo "# Multivendor-eZone" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/RockerTuhin/Multivendor-eZone.git
+git push -u origin main
