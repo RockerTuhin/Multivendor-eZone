@@ -6,3 +6,7 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+//installing https://ned.im/noty/#/installation
+@import "~noty/src/noty.scss";
+@import "~noty/src/themes/mint.scss";

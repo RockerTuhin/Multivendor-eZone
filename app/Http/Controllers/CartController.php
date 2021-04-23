@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Coupon;
+use App\CouponModel;
 use App\Product;
 use Illuminate\Http\Request;
 
@@ -52,21 +52,21 @@ class CartController extends Controller
 
     public function applyCoupon()
     {
+
         $couponCode = request('coupon_code');
 
-        $couponData = Coupon::where('code',$couponCode)->first();
-
+        $couponData = CouponModel::where('code',$couponCode)->first();
         if(!$couponData)
         {
+            // \Cart::session(auth()->id())->clearCartConditions();
             return back()->withMessage('Sorry! Coupon does not exist');
         }
         $condition = new \Darryldecode\Cart\CartCondition(array(
                 'name' => $couponData->name,
                 'type' => $couponData->type,
-                'target' => 'total', // this condition will be applied to cart's subtotal when getSubTotal() is called.
+                'target' => 'total', 
                 'value' => $couponData->value,
             ));
-
         \Cart::session(auth()->id())->condition($condition); // for a speicifc user's cart
 
         return back()->withMessage('coupon applied');

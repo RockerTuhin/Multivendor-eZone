@@ -22,6 +22,13 @@
     <link rel="stylesheet" href="{{ asset('assets/css/bundle.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/responsive.css') }}">
+
+
+    @livewireStyles
+
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/css/toastr.css" rel="stylesheet"/>
+
     <script src="{{ asset('assets/js/vendor/modernizr-2.8.3.min.js') }}"></script>
 </head>
 
@@ -48,6 +55,7 @@
             </div>
         </div>
     </div>
+
     <header>
         <div class="header-top-wrapper-2 border-bottom-2">
             <div class="header-info-wrapper pl-200 pr-200">
@@ -110,7 +118,7 @@
                         <div class="same-style-icon">
                             <a href="#"><i class="pe-7s-cart"></i></a>
                         </div>
-                        <div class="same-style-text">
+                        {{-- <div class="same-style-text">
                             <a href="{{ route('cart.index') }}">My Cart <br>
                                 @auth
                                     {{ Cart::session(auth()->id())->getContent()->count() }}
@@ -118,7 +126,8 @@
                                         0
                                 @endauth 
                             &nbsp;Item</a>
-                        </div>
+                        </div> --}}
+                        <livewire:nav-cart/>
                     </div>
                 </div>
                 <div class="mobile-menu-area electro-menu d-md-block col-md-12 col-lg-12 col-12 d-lg-none d-xl-none">
@@ -191,14 +200,10 @@
     </header>
     <!-- header end -->
     
-
-
     
     @yield('content')
 
 
-
-    
     <div class="banner-area wrapper-padding pt-30 pb-95">
         <div class="container-fluid">
             <div class="electro-fexible-banner bg-img" style="background-image: url({{ asset('assets/img/banner/19.jpg') }})">
@@ -1048,6 +1053,18 @@
     <script src="{{ asset('assets/js/owl.carousel.min.js') }}"></script>
     <script src="{{ asset('assets/js/plugins.js') }}"></script>
     <script src="{{ asset('assets/js/main.js') }}"></script>
+
+    @livewireScripts
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/js/toastr.js"></script>
+
+    <script type="text/javascript">
+        window.livewire.on('alert', param => {
+            toastr[param['type']](param['message']);
+        });
+    </script>
+
+
 </body>
 
 </html>

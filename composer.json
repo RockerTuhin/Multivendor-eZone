@@ -16,7 +16,9 @@
         "laravel/framework": "^7.24",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^2.4",
+        "livewire/livewire": "^2.4",
         "mobiledetect/mobiledetectlib": "^2.8",
+        "needim/noty": "^3.1",
         "orangehill/iseed": "^3.0",
         "srmklive/paypal": "~1.0",
         "tcg/voyager": "^1.4"
