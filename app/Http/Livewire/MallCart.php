@@ -28,13 +28,14 @@ class MallCart extends Component
 	{
 		$this->cartItems = \Cart::session(auth()->id())->getContent()->toArray();
 		//$this->mount();
+		$this->emit('alert', ['type' => 'success', 'message' => 'Item removed from cart!']);
 	}
 
 	public function onApplyCoupon()
 	{
 		$this->cartItems = \Cart::session(auth()->id())->getContent()->toArray();
 		//$this->mount();
-		return back()->withMessage('coupon applied');
+		$this->emit('alert', ['type' => 'success', 'message' => 'Coupon applied!']);
 	}
 
     public function render()

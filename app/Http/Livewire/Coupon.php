@@ -23,7 +23,7 @@ class Coupon extends Component
         if(!$couponData)
         {
         	// \Cart::session(auth()->id())->clearCartConditions();
-            return back()->withMessage('Sorry! Coupon does not exist');
+            $this->emit('alert', ['type' => 'error', 'message' => 'Coupon doesnt exist!']);
         }
         else 
         {

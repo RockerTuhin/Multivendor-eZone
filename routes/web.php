@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Order;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,5 +42,22 @@ Route::get('paypal/checkout-cancel','PaypalController@cancelPage')->name('paypal
 
 
 Route::group(['prefix' => 'admin'], function () {
+
     Voyager::routes();
+
+    Route::group(['prefix' => 'seller','middleware' => 'auth','as' => 'seller.','namespace' =>'Seller'],function()
+	{
+
+		Route::resource('/orders','OrderController');
+
+		Route::get('/order/delivered/{subOrder}','OrderController@markDelivered')->name('order.delivered');
+
+	});
+});
+
+
+Route::get('/test',function(){
+	$order = Order::find(2);
+	//dd($order->items->groupBy('shop_id'));
+	$order->generateSubOrders();
 });
