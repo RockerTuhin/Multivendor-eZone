@@ -53,6 +53,8 @@ Route::group(['prefix' => 'admin'], function () {
 		Route::get('/order/delivered/{subOrder}','OrderController@markDelivered')->name('order.delivered');
 
 	});
+
+	Route::get('/order/pay/{subOrder}','SubOrderController@pay')->name('order.pay');
 });
 
 
