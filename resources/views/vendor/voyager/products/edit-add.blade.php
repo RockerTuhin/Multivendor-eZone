@@ -101,6 +101,26 @@
                                     @endif
                                 </div>
                             @endforeach
+                                
+                            @php
+                                $attributes = \App\Attribute::with('values')->get();
+                            @endphp
+                            
+                            @foreach ($attributes as $attribute)
+                                <p>
+                                    <div class="form-group">
+                                        <label for="">{{ $attribute->name }} :</label>
+                                        <select class="form-control" name="product_attributes[{{ $attribute->name }}]" id="">
+                                            <option value=""></option>
+                                            @foreach ($attribute->values as $val)
+                                                <option value="{{ $val->value }}" {{ (!empty(json_decode($dataTypeContent->product_attributes,true)[$attribute->name]) && json_decode($dataTypeContent->product_attributes,true)[$attribute->name] == $val->value) ? 'selected' : '' }}>
+                                                    {{ $val->value }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </p>
+                            @endforeach
 
                         </div><!-- panel-body -->
 
