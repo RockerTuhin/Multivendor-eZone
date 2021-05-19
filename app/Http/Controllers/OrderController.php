@@ -85,6 +85,10 @@ class OrderController extends Controller
         {
             $order->payment_method = 'paypal';
         }
+        if(request('payment_method') == 'paypal_latest_sdk')
+        {
+            $order->payment_method = 'paypal';
+        }
 
 
         $order->save();
@@ -103,6 +107,10 @@ class OrderController extends Controller
         if(request('payment_method') == 'paypal')
         {
             return redirect()->route('paypal.checkout', $order->id);
+        }
+        if(request('payment_method') == 'paypal_latest_sdk')
+        {
+            return redirect()->route('paypal_latest_sdk.checkout', $order->id);
         }
 
         $order->generateSubOrders();

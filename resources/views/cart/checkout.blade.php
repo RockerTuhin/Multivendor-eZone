@@ -50,6 +50,12 @@
 			</label>
 		</div>
 
+		<div class="form-check">
+			<label for="paypal_latest_sdk" class="form-check-label">
+				<input type="radio" class="form-check-input" name="payment_method" id="paypal_latest_sdk" value="paypal_latest_sdk">Paypal Latest SDK
+			</label>
+		</div>
+
 		<button type="submit" class="btn btn-primary mt-3">Place Order</button>
 
 	</form>

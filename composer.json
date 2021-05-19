@@ -20,6 +20,7 @@
         "mobiledetect/mobiledetectlib": "^2.8",
         "needim/noty": "^3.1",
         "orangehill/iseed": "^3.0",
+        "paypal/paypal-checkout-sdk": "1.0.1",
         "srmklive/paypal": "~1.0",
         "tcg/voyager": "^1.4"
     },

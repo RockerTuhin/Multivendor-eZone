@@ -34,11 +34,16 @@ Route::resource('shops','ShopController')->middleware('auth');
 Route::get('/products/search', 'ProductController@search')->name('products.search');
 Route::resource('products','ProductController');
 
-
+//paypal old api
 Route::get('paypal/checkout/{order_id}','PaypalController@getExpressCheckout')->name('paypal.checkout');
 
 Route::get('paypal/checkout-success/{order_id}','PaypalController@getExpressCheckoutSuccess')->name('paypal.success');
 Route::get('paypal/checkout-cancel','PaypalController@cancelPage')->name('paypal.cancel');
+//paypal latest sdk
+Route::get('paypal_latest_sdk/checkout/{order_id}','PaypalLatestSDKController@getExpressCheckout')->name('paypal_latest_sdk.checkout');
+
+Route::get('paypal_latest_sdk/checkout-success/{order_id}','PaypalLatestSDKController@getExpressCheckoutSuccess')->name('paypal_latest_sdk.success');
+Route::get('paypal_latest_sdk/checkout-cancel','PaypalLatestSDKController@cancelPage')->name('paypal_latest_sdk.cancel');
 
 
 Route::group(['prefix' => 'admin'], function () {
